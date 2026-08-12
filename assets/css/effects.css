@@ -1,0 +1,289 @@
+/* Galaxy atmosphere + cursor reveal — subtle size, brand purple */
+
+:root {
+  --galaxy-ring: rgba(168, 85, 247, 0.28);
+  --galaxy-ring-active: rgba(192, 132, 252, 0.4);
+}
+
+body.is-galaxy-active {
+  background:
+    radial-gradient(ellipse 70% 45% at 12% 8%, rgba(88, 28, 135, 0.12), transparent 50%),
+    radial-gradient(ellipse 55% 40% at 88% 85%, rgba(168, 85, 247, 0.09), transparent 50%),
+    var(--color-bg);
+}
+
+body.galaxy-paused .galaxy-field,
+body.galaxy-paused .cursor-ring {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+main,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.galaxy-field {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  transition: opacity 0.2s ease;
+}
+
+.galaxy-field__nebula {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(ellipse 50% 35% at 20% 25%, rgba(88, 28, 135, 0.15), transparent 70%),
+    radial-gradient(ellipse 40% 30% at 78% 72%, rgba(168, 85, 247, 0.11), transparent 72%),
+    radial-gradient(ellipse 25% 20% at 60% 15%, rgba(192, 132, 252, 0.09), transparent 68%);
+  will-change: transform;
+}
+
+.galaxy-field__dust {
+  position: absolute;
+  inset: 0;
+  opacity: 0.09;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.65), transparent),
+    radial-gradient(1px 1px at 28% 72%, rgba(192, 132, 252, 0.55), transparent),
+    radial-gradient(1px 1px at 44% 34%, rgba(168, 85, 247, 0.5), transparent),
+    radial-gradient(1px 1px at 58% 82%, rgba(255, 255, 255, 0.45), transparent),
+    radial-gradient(1px 1px at 71% 24%, rgba(192, 132, 252, 0.55), transparent),
+    radial-gradient(1px 1px at 86% 58%, rgba(168, 85, 247, 0.45), transparent);
+}
+
+.galaxy-field__ambient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.galaxy-ambient {
+  position: absolute;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  opacity: 0.2;
+  transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+}
+
+.galaxy-ambient--star {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 5px rgba(192, 132, 252, 0.35);
+}
+
+.galaxy-ambient--triangle {
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-bottom: 5px solid rgba(168, 85, 247, 0.35);
+}
+
+.galaxy-ambient--dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(192, 132, 252, 0.5);
+  box-shadow: 0 0 6px rgba(168, 85, 247, 0.3);
+}
+
+.galaxy-ambient.is-near {
+  opacity: 0.75;
+  transform: translate(-50%, -50%) scale(1.5);
+  filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.5));
+}
+
+.galaxy-field__spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.galaxy-field__reveal {
+  position: absolute;
+  inset: 0;
+}
+
+.galaxy-field__objects {
+  position: absolute;
+  inset: 0;
+}
+
+.galaxy-field__anchors {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.galaxy-object {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.galaxy-object--star {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 5px rgba(192, 132, 252, 0.45);
+}
+
+.galaxy-object--star-accent {
+  width: 2px;
+  height: 2px;
+  box-shadow: 0 0 6px rgba(168, 85, 247, 0.5);
+}
+
+.galaxy-object--triangle {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 7px solid rgba(168, 85, 247, 0.18);
+  opacity: 0.3;
+}
+
+.galaxy-object--triangle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: -1px;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(192, 132, 252, 0.4);
+}
+
+.galaxy-object--line {
+  height: 1px;
+  transform-origin: left center;
+  background: linear-gradient(90deg, rgba(168, 85, 247, 0.18), transparent);
+  opacity: 0.3;
+}
+
+.galaxy-anchor {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: default;
+  pointer-events: auto;
+  opacity: 0.22;
+  transition: opacity 0.35s ease, transform 0.35s ease, filter 0.35s ease;
+}
+
+.galaxy-anchor::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  transform: translate(-50%, -50%) scale(0.5);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(192, 132, 252, 0.22) 0%, transparent 72%);
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.galaxy-anchor::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.galaxy-anchor--star::before {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(192, 132, 252, 0.45);
+}
+
+.galaxy-anchor--triangle::before {
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 7px solid rgba(168, 85, 247, 0.4);
+  background: transparent;
+  box-shadow: none;
+  transform: translate(-50%, -40%);
+}
+
+.galaxy-anchor:hover,
+.galaxy-anchor.is-near {
+  opacity: 0.9;
+  transform: translate(-50%, -50%) scale(1.4);
+  filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.6));
+}
+
+.galaxy-anchor:hover::after,
+.galaxy-anchor.is-near::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.galaxy-anchor--star:hover::before,
+.galaxy-anchor--star.is-near::before {
+  box-shadow:
+    0 0 8px rgba(192, 132, 252, 0.7),
+    0 0 14px rgba(168, 85, 247, 0.35);
+}
+
+.galaxy-anchor--triangle:hover::before,
+.galaxy-anchor--triangle.is-near::before {
+  border-bottom-color: rgba(192, 132, 252, 0.75);
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--galaxy-ring);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform, opacity;
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, opacity 0.2s ease;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.12);
+}
+
+.cursor-ring--active {
+  width: 68px;
+  height: 68px;
+  border-color: var(--galaxy-ring-active);
+  box-shadow: 0 0 28px rgba(168, 85, 247, 0.18);
+}
+
+@media (max-width: 768px) {
+  .cursor-ring {
+    display: none;
+  }
+
+  .galaxy-field__anchors {
+    display: none;
+  }
+}

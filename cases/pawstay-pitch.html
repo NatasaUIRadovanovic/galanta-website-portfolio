@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PawStay — Pitch Sheet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --text: #f4f4f0;
+      --muted: #9a9a93;
+      --accent: #a855f7;
+      --border: rgba(244, 244, 240, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    @page {
+      size: A4 landscape;
+      margin: 0;
+    }
+
+    html, body {
+      width: 297mm;
+      height: 210mm;
+      overflow: hidden;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 8.5pt;
+      line-height: 1.4;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .pitch {
+      width: 297mm;
+      height: 210mm;
+      max-height: 210mm;
+      overflow: hidden;
+      margin: 0;
+      padding: 7mm 9mm;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 5mm;
+      box-sizing: border-box;
+    }
+
+    .pitch__tag {
+      display: inline-block;
+      font-size: 7pt;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.25rem 0.45rem;
+      margin-bottom: 4mm;
+    }
+
+    .pitch__title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 19pt;
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 0 0 3mm;
+      max-width: 95%;
+    }
+
+    .pitch__lead {
+      color: var(--muted);
+      font-size: 9.5pt;
+      margin: 0 0 5mm;
+      max-width: 92%;
+    }
+
+    .pitch__meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3mm;
+      border-top: 1px solid var(--border);
+      padding-top: 3mm;
+      margin-bottom: 5mm;
+    }
+
+    .pitch__meta dt {
+      font-size: 6.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 1mm;
+    }
+
+    .pitch__meta dd {
+      margin: 0;
+      font-weight: 600;
+      font-size: 8pt;
+    }
+
+    .pitch__section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 8.5pt;
+      font-weight: 700;
+      margin: 0 0 2mm;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .pitch__copy {
+      margin: 0 0 4mm;
+      color: var(--muted);
+    }
+
+    .pitch__list {
+      margin: 0 0 4mm;
+      padding-left: 4mm;
+      color: var(--muted);
+    }
+
+    .pitch__list li { margin-bottom: 1.5mm; }
+    .pitch__list strong { color: var(--text); }
+
+    .pitch__outcomes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3mm;
+    }
+
+    .pitch__outcome {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 3mm;
+    }
+
+    .pitch__outcome strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 8pt;
+      margin-bottom: 1mm;
+    }
+
+    .pitch__outcome p {
+      margin: 0;
+      font-size: 7.5pt;
+      color: var(--muted);
+    }
+
+    .pitch__footer {
+      margin-top: 4mm;
+      padding-top: 3mm;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 7.5pt;
+      color: var(--muted);
+    }
+
+    .pitch__footer strong { color: var(--text); }
+
+    .pitch__visual {
+      display: flex;
+      flex-direction: column;
+      gap: 4mm;
+    }
+
+    .pitch__brand {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4mm;
+      padding: 3mm 4mm;
+      background: linear-gradient(135deg, #1a1030, #141414);
+      border: 1px solid var(--border);
+    }
+
+    .pitch__brand-text {
+      flex: 1;
+    }
+
+    .pitch__brand-name {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13pt;
+      margin-bottom: 1mm;
+      letter-spacing: -0.02em;
+    }
+
+    .pitch__logo {
+      width: 20mm;
+      height: auto;
+      border-radius: 3mm;
+      flex-shrink: 0;
+    }
+
+    .pitch__brand-tagline {
+      margin: 0;
+      color: var(--muted);
+      font-size: 8pt;
+    }
+
+    .pitch__phones {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3mm;
+      align-items: end;
+    }
+
+    .pitch__phone {
+      text-align: center;
+    }
+
+    .pitch__phone img {
+      width: 100%;
+      max-height: 52mm;
+      object-fit: contain;
+      object-position: top center;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .pitch__phone span {
+      display: block;
+      margin-top: 1.5mm;
+      font-size: 6.5pt;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pitch__compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3mm;
+    }
+
+    .pitch__compare img {
+      width: 100%;
+      max-height: 28mm;
+      object-fit: cover;
+      object-position: top center;
+      border: 1px solid var(--border);
+    }
+
+    .pitch__compare-label {
+      font-size: 6.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 1mm;
+    }
+
+    @media screen {
+      body {
+        padding: 16px;
+        background: #111;
+      }
+
+      .pitch {
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      .print-hint {
+        max-width: 277mm;
+        margin: 0 auto 12px;
+        text-align: center;
+        color: #888;
+        font-size: 13px;
+      }
+    }
+
+    @media print {
+      .print-hint { display: none; }
+      body { background: var(--bg); margin: 0; }
+      .pitch { page-break-after: avoid; page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <p class="print-hint">Print or Save as PDF · A4 landscape · Enable background graphics</p>
+
+  <article class="pitch">
+    <div class="pitch__content">
+      <span class="pitch__tag">Concept · Product Design · NDA</span>
+      <h1 class="pitch__title">Most client work stays under NDA. PawStay shows the design process when it can't.</h1>
+      <p class="pitch__lead">Trust-first mobile concept for pet owners — redesigned from a Behance proposal into a clear flow: discover → trust → book → request sent. Light and dark mode.</p>
+
+      <dl class="pitch__meta">
+        <div><dt>Studio</dt><dd>Galanta Design Studio</dd></div>
+        <div><dt>Role</dt><dd>Product Designer</dd></div>
+        <div><dt>Platform</dt><dd>Mobile (iOS)</dd></div>
+        <div><dt>Focus</dt><dd>Trust &amp; booking</dd></div>
+      </dl>
+
+      <h3 class="pitch__section-title">Redesign</h3>
+      <p class="pitch__copy">PawStay was restructured around how people book pet care — fewer competing priorities, sharper hierarchy, one path from discovery to sent request.</p>
+
+      <h3 class="pitch__section-title">What users needed</h3>
+      <ul class="pitch__list">
+        <li><strong>Trust first</strong> — verified sitters, reviews, pricing upfront.</li>
+        <li><strong>One job per screen</strong> — no dashboard dump on day one.</li>
+        <li><strong>Honest states</strong> — request sent ≠ booked.</li>
+      </ul>
+
+      <h3 class="pitch__section-title">Design outcomes</h3>
+      <div class="pitch__outcomes">
+        <div class="pitch__outcome">
+          <strong>Clearer home</strong>
+          <p>Intent-first categories, one featured sitter.</p>
+        </div>
+        <div class="pitch__outcome">
+          <strong>Trust on profile</strong>
+          <p>Reviews &amp; verification before book.</p>
+        </div>
+        <div class="pitch__outcome">
+          <strong>Booking that adds up</strong>
+          <p>Summary total + pay after accept.</p>
+        </div>
+      </div>
+
+      <div class="pitch__footer">
+        <span><strong>Galanta Design Studio</strong> · natasa.radovanovic1991@gmail.com</span>
+        <span>galantadesignstudio.com · Concept case study 2026</span>
+      </div>
+    </div>
+
+    <div class="pitch__visual">
+      <div class="pitch__brand">
+        <div class="pitch__brand-text">
+          <strong class="pitch__brand-name">PawStay</strong>
+          <p class="pitch__brand-tagline">Find caring pet sitters around you.</p>
+        </div>
+        <img class="pitch__logo" src="../assets/images/pawstay/logo.png" alt="PawStay">
+      </div>
+
+      <div class="pitch__phones">
+        <div class="pitch__phone">
+          <img src="../assets/images/pawstay/welcome.png" alt="Welcome screen">
+          <span>Welcome</span>
+        </div>
+        <div class="pitch__phone">
+          <img src="../assets/images/pawstay/summary.png" alt="Booking summary">
+          <span>Summary</span>
+        </div>
+        <div class="pitch__phone">
+          <img src="../assets/images/pawstay/success.png" alt="Request sent">
+          <span>Request sent</span>
+        </div>
+      </div>
+
+      <div class="pitch__compare">
+        <div>
+          <div class="pitch__compare-label">Before</div>
+          <img src="../assets/images/pawstay/before/home.png" alt="Before redesign">
+        </div>
+        <div>
+          <div class="pitch__compare-label">After</div>
+          <img src="../assets/images/pawstay/home.png" alt="After redesign">
+        </div>
+      </div>
+    </div>
+  </article>
+</body>
+</html>
