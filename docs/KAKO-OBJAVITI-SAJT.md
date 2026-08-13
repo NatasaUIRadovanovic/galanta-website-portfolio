@@ -2,6 +2,21 @@
 
 Ovo uputstvo je pisano za **nekoga ko nije programer**. Sve objašnjeno polako, bez pretpostavke da znaš terminologiju.
 
+**Poslednje ažuriranje:** sajt je spreman za objavu (responzivan dizajn, mobilni meni, favicon). Preporučeni put: **Način 2 — GitHub + Netlify**.
+
+---
+
+## Gde si sada? (tvoj sledeći korak)
+
+| Korak | Status | Šta radiš |
+|-------|--------|-----------|
+| 1. Sajt lokalno radi | ✅ Gotovo | Testirala si na `localhost:8000` + telefon |
+| 2. Git na Mac-u | ✅ Gotovo | Projekat već ima Git istoriju |
+| 3. GitHub nalog + repo | ⬜ **Sledeće** | Deo A ispod — 15 min |
+| 4. `git push` | ⬜ Posle koraka 3 | Pošalješ fajlove na GitHub |
+| 5. Netlify + GitHub | ⬜ Posle koraka 4 | Deo B — sajt ide online |
+| 6. Provera na telefonu | ⬜ Na kraju | Otvoriš `tvoj-sajt.netlify.app` |
+
 ---
 
 ## Šta zapravo objavljuješ?
@@ -30,11 +45,16 @@ python3 -m http.server 8000
 ```
 
 3. Otvori browser (Chrome/Safari) i idi na: **http://localhost:8000**
+
+⚠️ **Ne otvaraj** `index.html` dvostrukim klikom iz Findera — sendvič meni i neke stvari ne rade bez servera. Uvek koristi `localhost:8000`.
+
 4. Proveri:
-   - [ ] Početna strana — tekst, dugmad, slike
-   - [ ] PawStay, Spona, UXZGB case study — otvaraju se, slike se vide
-   - [ ] Email u Contact sekciji je tačan
+   - [x] Početna strana — tekst, dugmad, slike
+   - [x] PawStay, Spona, UXZGB case study — otvaraju se, slike se vide
+   - [ ] Email u Contact sekciji je tačan *(proveri pre publish-a)*
    - [ ] LinkedIn / Behance linkovi rade
+   - [x] Mobilni meni (sendvič) — overlay + Work / About / Contact
+   - [x] Favicon (mala G ikonica u tabu browsera)
 
 5. Kada završiš, u Terminalu pritisni **Ctrl + C** da zaustaviš server.
 
@@ -132,25 +152,37 @@ GitHub će ti pokazati stranicu sa uputstvima. **Ostavi tu stranicu otvorenu.**
 
 ### Korak 3 — Pošalji projekat sa Mac-a na GitHub
 
-Otvori **Terminal** i ukucaj redom (zameni `TVOJ_GITHUB_USERNAME` svojim korisničkim imenom sa GitHub-a):
+**Pre prvog push-a** — sačuvaj poslednje izmene (responzivni dizajn, meni, favicon):
 
 ```bash
 cd /Users/natasa/Projects/Test_sajt
+git add .
+git commit -m "Spremno za objavu — responzivni sajt i mobilni meni"
+```
+
+Zatim poveži GitHub (samo **prvi put** — zameni `TVOJ_GITHUB_USERNAME`):
+
+```bash
 git remote add origin https://github.com/TVOJ_GITHUB_USERNAME/galanta-portfolio.git
 git branch -M main
 git push -u origin main
 ```
 
+Ako GitHub kaže da `remote origin already exists`, preskoči `git remote add` i samo uradi `git push -u origin main`.
+
 **Prvi put** GitHub će tražiti login:
 - Može otvoriti browser prozor — uloguj se
 - Ili traži **Personal Access Token** umesto lozinke (GitHub više ne prihvata običnu lozinku u Terminalu)
 
-Ako traži token:
-1. GitHub → Settings → Developer settings → Personal access tokens → Generate new token
-2. Daj mu ime „portfolio“, štikliraj **repo**
-3. Kopiraj token i nalepi u Terminal kada traži lozinku
+Ako traži token (detaljnije, 2024+):
+1. GitHub → desno gore **avatar** → **Settings**
+2. Levo dole **Developer settings** → **Personal access tokens** → **Tokens (classic)**
+3. **Generate new token (classic)** → ime npr. `portfolio`
+4. Štikliraj **`repo`** (cela kutija)
+5. **Generate token** → **kopiraj odmah** (nećeš ga više videti!)
+6. U Terminalu, kada traži **Password**, nalepi token (ne GitHub lozinku)
 
-Kada `git push` uspe — osveži GitHub stranicu repozitorijuma. Trebalo bi da vidiš sve fajlove (`index.html`, `assets/`, itd.).
+Kada `git push` uspe — osveži GitHub stranicu repozitorijuma. Trebalo bi da vidiš sve fajlove (`index.html`, `assets/`, `docs/`, itd.).
 
 ---
 
@@ -270,23 +302,41 @@ Ne moraš odmah — `tvoj-ime.netlify.app` je potpuno validan portfolio link.
 **Ne nađem folder Test_sajt**  
 → Finder → Cmd + Shift + G → `/Users/natasa/Projects/Test_sajt`
 
+**Sendvič meni ne radi**  
+→ Otvori sajt preko **http://localhost:8000**, ne direktno iz Findera.
+
+**Deploy na Netlify pukne**  
+→ Proveri: Build command = prazno, Publish directory = `.` (tačka)
+
 ---
 
 ## Checklist pre prvog publish-a
 
 - [ ] Email tačan u Contact sekciji
 - [ ] LinkedIn i Behance linkovi rade
-- [ ] Sve slike se učitavaju (Spona hero, PawStay, UXZGB)
-- [ ] Provereno na telefonu (meni, scroll)
+- [x] Sve slike se učitavaju (Spona hero, PawStay, UXZGB)
+- [x] Provereno na telefonu (sendvič meni, scroll, fontovi)
+- [ ] `git push` uspeo na GitHub
 - [ ] Netlify deploy status: **Published**
 
 ---
 
 ## Pomoć — gde šta u projektu
 
-Detaljnije kako da **menjaš sadržaj** posle objave: [`HOW-TO-UPDATE.md`](HOW-TO-UPDATE.md) (engleski).
+| Šta | Fajl |
+|-----|------|
+| Početna strana | `index.html` |
+| Case study stranice | `cases/pawstay.html`, `cases/spona-sales.html`, `cases/uxzgb.html` |
+| Slike | `assets/images/` |
+| Favicon (tab) | `assets/images/galanta/favicon.png` |
+| G app ikonica | `assets/images/galanta/icon-app.png` |
+| Nav wordmark | `assets/images/galanta/logo-nav.png` |
+| Boje, dugmad, mobilni meni | `assets/css/styles.css` |
+| Kako menjati sadržaj | [`HOW-TO-UPDATE.md`](HOW-TO-UPDATE.md) (engleski) |
 
-Tvoj projekat već ima **Git** inicijalizovan — prvi commit je sačuvan. Za GitHub samo treba `git remote add` i `git push` iz Deo A, Korak 3.
+Detaljnije kako da **menjaš sadržaj** posle objave: [`HOW-TO-UPDATE.md`](HOW-TO-UPDATE.md).
+
+Projekat ima **Git** — posle svake izmene: `git add .` → `git commit -m "opis"` → `git push`.
 
 ---
 

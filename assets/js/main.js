@@ -15,21 +15,38 @@ async function loadPartials() {
 function initMobileMenu() {
   const toggle = document.querySelector('.menu-toggle');
   const menu = document.getElementById('mobile-menu');
-  if (!toggle || !menu) return;
+  if (!toggle || !menu || toggle.dataset.menuBound === 'true') return;
 
-  toggle.addEventListener('click', () => {
+  toggle.dataset.menuBound = 'true';
+  const backdrop = menu.querySelector('[data-menu-close]');
+
+  function setOpen(open) {
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    menu.hidden = !open;
+    document.body.classList.toggle('menu-open', open);
+  }
+
+  function closeMenu() {
+    setOpen(false);
+  }
+
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
     const expanded = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!expanded));
-    toggle.setAttribute('aria-label', expanded ? 'Open menu' : 'Close menu');
-    menu.hidden = expanded;
+    setOpen(!expanded);
   });
 
-  menu.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => {
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Open menu');
-      menu.hidden = true;
-    });
+  backdrop?.addEventListener('click', closeMenu);
+
+  menu.querySelectorAll('.mobile-menu__link, .mobile-menu__icon-link').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+      closeMenu();
+    }
   });
 }
 
@@ -39,10 +56,10 @@ function setFooterYear() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+  initMobileMenu();
+  fixSiteLinks();
   try {
     await loadPartials();
-    fixSiteLinks();
-    initMobileMenu();
     setFooterYear();
   } catch (err) {
     console.warn(err);
@@ -54,11 +71,11 @@ function fixSiteLinks() {
   const onCasePage = window.location.pathname.includes('/cases/');
   const home = onCasePage ? '../index.html' : 'index.html';
 
-  document.querySelectorAll('.logo').forEach((logo) => {
+  document.querySelectorAll('.logo, .mobile-menu__icon-link').forEach((logo) => {
     logo.setAttribute('href', home);
   });
 
-  document.querySelectorAll('.main-nav a, .mobile-menu a').forEach((link) => {
+  document.querySelectorAll('.main-nav a, .mobile-menu__link').forEach((link) => {
     const href = link.getAttribute('href');
     if (href?.startsWith('#')) {
       link.setAttribute('href', `${home}${href}`);
@@ -66,11 +83,14 @@ function fixSiteLinks() {
   });
 }
 
-// Service worker disabled — was caching stale assets during development.
-// Re-enable before production deploy if desired.
-
 function initGalaxyEffects() {
   if (document.querySelector('.galaxy-field')) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isNarrowViewport = window.matchMedia('(max-width: 800px)').matches;
+  const isCoarsePointer = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+  if (prefersReducedMotion || isNarrowViewport || isCoarsePointer) return;
 
   document.body.classList.add('is-galaxy-active');
   document.body.insertAdjacentHTML(
@@ -170,7 +190,6 @@ function initGalaxyEffects() {
   let mouseY = window.innerHeight / 2;
   let ringX = mouseX;
   let ringY = mouseY;
-  let moving = false;
   let idleTimer;
 
   function isOverImage(x, y) {
@@ -206,11 +225,9 @@ function initGalaxyEffects() {
     mouseX = x;
     mouseY = y;
     applySpotlight(x, y);
-    moving = true;
     ring.classList.add('cursor-ring--active');
     clearTimeout(idleTimer);
     idleTimer = setTimeout(() => {
-      moving = false;
       ring.classList.remove('cursor-ring--active');
     }, 900);
   }
