@@ -13,10 +13,18 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--color-accent);
-  border: 1px solid var(--color-accent);
-  padding: 0.35rem 0.7rem;
+  color: var(--color-muted);
+  border: 1px solid var(--color-accent-outline);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.85rem;
   margin-bottom: var(--space-md);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.case-hero__tag:hover {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-hover);
+  color: var(--color-accent-hover);
 }
 
 .case-hero__title {
@@ -39,7 +47,9 @@
   max-width: 720px;
   margin-bottom: var(--space-xl);
   padding: var(--space-md) var(--space-lg);
+  border: 1px solid var(--color-accent-outline);
   border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius);
   background: rgba(168, 85, 247, 0.06);
   color: var(--color-muted);
   font-size: 1rem;
@@ -99,7 +109,7 @@
 .case-hero-showcase__logo {
   width: 140px;
   height: auto;
-  border-radius: 16px;
+  border-radius: var(--radius);
   display: block;
   object-fit: contain;
 }
@@ -129,8 +139,16 @@
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--color-muted);
-  border: 1px solid var(--color-border);
-  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--color-accent-outline);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.75rem;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.case-hero-showcase__tags span:hover {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-hover);
+  color: var(--color-accent-hover);
 }
 
 .case-figure {
@@ -324,8 +342,15 @@
 
 .case-outcome {
   border: 1px solid var(--color-border);
+  border-radius: var(--radius);
   padding: var(--space-md);
   background: var(--color-bg);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.case-outcome:hover {
+  border-color: var(--color-accent-outline);
+  box-shadow: 0 8px 28px rgba(168, 85, 247, 0.06);
 }
 
 .case-outcome strong {

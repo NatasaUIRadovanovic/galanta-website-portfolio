@@ -7,10 +7,13 @@
   --color-muted: #9a9a93;
   --color-accent: #a855f7;
   --color-accent-hover: #c084fc;
+  --color-accent-outline: rgba(168, 85, 247, 0.42);
+  --color-accent-soft: rgba(168, 85, 247, 0.14);
   --color-border: rgba(244, 244, 240, 0.12);
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
-  --radius: 0px;
+  --radius: 20px;
+  --radius-pill: 20px;
   --max-width: 1160px;
   --space-xs: 0.5rem;
   --space-sm: 1rem;
@@ -97,8 +100,9 @@ a {
   font-weight: 600;
   font-size: 0.95rem;
   border: 2px solid transparent;
+  border-radius: var(--radius);
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .button:hover {
@@ -119,12 +123,13 @@ a {
 .button--secondary {
   background: transparent;
   color: var(--color-text);
-  border-color: var(--color-text);
+  border-color: var(--color-accent-outline);
 }
 
 .button--secondary:hover {
-  background: var(--color-text);
-  color: var(--color-bg);
+  background: var(--color-accent-soft);
+  color: var(--color-text);
+  border-color: var(--color-accent-hover);
 }
 
 .site-header {
@@ -281,12 +286,15 @@ a {
 .case-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .case-card:hover {
   transform: translateY(-6px);
-  border-color: var(--color-accent);
+  border-color: var(--color-accent-outline);
+  box-shadow: 0 12px 40px rgba(168, 85, 247, 0.08);
 }
 
 .case-card__link {
@@ -340,9 +348,17 @@ a {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--color-accent);
-  border: 1px solid var(--color-accent);
-  padding: 0.25rem 0.5rem;
+  color: var(--color-muted);
+  border: 1px solid var(--color-accent-outline);
+  border-radius: var(--radius-pill);
+  padding: 0.3rem 0.75rem;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.case-card:hover .case-card__tag {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-hover);
+  color: var(--color-accent-hover);
 }
 
 .case-card--external .case-card__body h3::after {
@@ -419,11 +435,19 @@ a {
 }
 
 .about__tools li {
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  padding: 0.35rem 0.7rem;
+  background: transparent;
+  border: 1px solid var(--color-accent-outline);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.85rem;
   font-size: 0.85rem;
   color: var(--color-muted);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.about__tools li:hover {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-hover);
+  color: var(--color-accent-hover);
 }
 
 .contact {
