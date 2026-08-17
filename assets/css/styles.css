@@ -390,6 +390,40 @@ body.menu-open {
   gap: var(--space-md);
 }
 
+.nda-cta {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-accent-outline);
+  border-radius: var(--radius);
+  max-width: 720px;
+}
+
+.nda-cta__eyebrow {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 var(--space-xs);
+}
+
+.nda-cta__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 700;
+  margin: 0 0 var(--space-sm);
+  letter-spacing: -0.02em;
+}
+
+.nda-cta__text {
+  color: var(--color-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin: 0 0 var(--space-md);
+  max-width: 56ch;
+}
+
 .case-card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
