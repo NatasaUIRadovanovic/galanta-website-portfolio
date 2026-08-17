@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/styles.css?v=7">
+  <link rel="stylesheet" href="assets/css/styles.css?v=8">
   <link rel="stylesheet" href="assets/css/effects.css?v=41">
   <script>
     if ('serviceWorker' in navigator) {
@@ -73,10 +73,12 @@
         <div class="work__grid" data-partial="partials/work-grid.html"></div>
 
         <aside class="nda-cta" aria-labelledby="nda-cta-title">
-          <p class="nda-cta__eyebrow">Under NDA</p>
-          <h3 class="nda-cta__title" id="nda-cta-title">More work — available on a call</h3>
-          <p class="nda-cta__text">Several shipped projects can't be shown here because of client NDAs. Email me and we'll schedule a short call — I'll walk you through work that's relevant to your brief, in confidence.</p>
-          <a href="mailto:natasa.radovanovic1991@gmail.com?subject=Private%20portfolio%20walkthrough" class="button button--primary">Email to schedule a call</a>
+          <div class="nda-cta__content">
+            <p class="nda-cta__eyebrow">Under NDA</p>
+            <h3 class="nda-cta__title" id="nda-cta-title">More work — available on a call</h3>
+            <p class="nda-cta__text">Much of my shipped work stays under client NDAs — it can't appear on a public portfolio. Email me to schedule a short call; I'll walk you through projects that fit your brief, in confidence.</p>
+          </div>
+          <a href="mailto:natasa.radovanovic1991@gmail.com?subject=Private%20portfolio%20walkthrough" class="button button--primary nda-cta__action">Email to schedule a call</a>
         </aside>
       </div>
     </section>
