@@ -391,12 +391,13 @@ body.menu-open {
 }
 
 .nda-cta {
-  margin-top: var(--space-xl);
+  width: 100%;
+  margin-top: var(--space-md);
   padding: var(--space-lg);
   background: var(--color-surface);
   border: 1px solid var(--color-accent-outline);
   border-radius: var(--radius);
-  max-width: 720px;
+  box-sizing: border-box;
 }
 
 .nda-cta__eyebrow {
