@@ -52,7 +52,7 @@ Hard refresh if something looks old: **Cmd + Shift + R**
 
 | I want to change… | Edit this file |
 |-------------------|----------------|
-| Homepage headline, about, contact | `index.html` |
+| Homepage headline, about, contact CTA | `index.html` |
 | Work cards on homepage | `partials/work-grid.html` |
 | Top navigation / logo link | `partials/header.html` |
 | Footer | `partials/footer.html` |
@@ -97,13 +97,13 @@ Use **PNG with transparent background**.
 Browsers cache old files. Bump the version number in `index.html`:
 
 ```html
-<link rel="stylesheet" href="assets/css/styles.css?v=29">
+<link rel="stylesheet" href="assets/css/styles.css?v=30">
 <link rel="stylesheet" href="assets/css/effects.css?v=41">
 <script src="assets/js/main.js?v=41" defer></script>
 ```
 
-Change `29` → `30` (or higher) each time you update `styles.css`.  
-Case pages use `../assets/css/styles.css?v=5` — bump those too if case pages should pick up global CSS changes immediately.
+Change `30` → `31` (or higher) each time you update `styles.css`.  
+Case pages use `../assets/css/styles.css?v=30` — bump those too if case pages should pick up global CSS changes immediately.
 
 Case pages: bump `case.css?v=6` in each case HTML file if you changed case-only styles.
 
@@ -148,7 +148,7 @@ git checkout -- path/to/file.html
 ```bash
 cd /Users/natasa/Projects/Test_sajt
 git add index.html assets/css/styles.css assets/images/galanta/ partials/ cases/ docs/
-git commit -m "Hero polish, glass buttons, typography, logo v2"
+git commit -m "Glassier primary, purple pill outlines, contact email CTA button"
 git push
 ```
 

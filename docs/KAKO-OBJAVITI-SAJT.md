@@ -35,13 +35,13 @@ Ovo uputstvo je pisano za **nekoga ko nije programer**. Sve objašnjeno polako, 
   - Eyebrow: **Clash Display**, ljubičasti gradijent tekst (`--gradient-accent-text`)
   - H1: **Clash Display** (veći od sekcijskih naslova)
   - Subtitle: svetlija siva (`--color-hero-subtitle`)
-  - **Primary dugme:** liquid glass + suptilan gradijent outline + blagi warm glow (hint žute iz loga)
+  - **Primary dugme:** liquid glass (providnije) + suptilan gradijent outline + blagi warm glow
   - **Secondary dugme:** samo gradijent outline; hover = blaga providna pozadina
 - **Selected Work / About / Contact naslovi (h2):** **Clash Display**, manji od h1
 - **Work kartice:** klasična siva ivica (bez gradijent outline-a)
-- **Pilule na karticama:** gradijent outline sa blagim warm tonom (`--gradient-pill-outline`)
-- **NDA kartica („More work“):** poseban suptilan gradijent outline (`--gradient-nda-outline`); eyebrow kao hero
-- **Contact email:** isti gradijent kao eyebrow + Clash Display
+- **Pilule na karticama:** ljubičasti gradijent outline kao NDA kartica (`--gradient-pill-outline`)
+- **NDA kartica („More work“):** suptilan gradijent outline (`--gradient-nda-outline`); eyebrow kao hero
+- **Contact:** primary dugme **„Send an email“** (mailto) + adresa ispod za copy/paste; LinkedIn + Behance
 - **Logotipi v2:** `logo-nav.png`, `logo-about.png`, `favicon.png`, `icon-app.png` (transparent PNG)
 
 ### Sadržaj (tekst)
@@ -51,7 +51,7 @@ Ovo uputstvo je pisano za **nekoga ko nije programer**. Sve objašnjeno polako, 
 - **About:** tagovi redosled **Skills → AI workflow → Tools**
   - Skills uključuje: Product Redesign, Cross-functional Collaboration, …
   - AI workflow uključuje: **Cursor**, GPT & Claude, …
-- **Contact:** email + LinkedIn + Behance; NDA rad preko emaila pa Google Meet
+- **Contact:** dugme „Send an email“ + adresa ispod; LinkedIn + Behance; NDA rad preko emaila pa Google Meet
 
 ### Kontakt na sajtu
 - Email: `natasa.radovanovic1991@gmail.com`
@@ -433,15 +433,15 @@ Glavni fajl: **`index.html`** (Cmd + P → ukucaj `index.html`)
 | NDA kartica (tekst + dugme) | `.nda-cta` | `nda-cta` |
 | About pasusi | `.about__text` | `about__text` |
 | About tagovi (Skills / AI / Tools) | `.about__tag-groups` | `about__tag-label` |
-| Contact | `#contact` | `contact__text` |
+| Contact (tekst + dugme + adresa) | `#contact` | `contact__actions` |
 
 ### NDA CTA kartica
 - HTML: `index.html` → blok `nda-cta`
 - Stilovi: `assets/css/styles.css` → traži `.nda-cta`
-- Posle CSS izmene: u `index.html` povećaj broj u `styles.css?v=29` → `?v=30` (browser keš)
+- Posle CSS izmene: u `index.html` povećaj broj u `styles.css?v=30` → `?v=31` (browser keš)
 
 ### Fontovi (učitavaju se u `index.html`)
-- **Clash Display** — hero eyebrow, h1, h2 naslovi sekcija, NDA eyebrow, contact email
+- **Clash Display** — hero eyebrow, h1, h2 naslovi sekcija, NDA eyebrow
 - **Inter** — body tekst
 - **Space Grotesk** — rezervni display font u CSS-u
 

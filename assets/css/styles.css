@@ -18,7 +18,14 @@
   --gradient-accent: linear-gradient(168deg, #8766f2 0%, #7c3aed 52%, #7340e6 100%);
   --gradient-accent-hover: linear-gradient(168deg, #9474f4 0%, #8452ee 52%, #7c3aed 100%);
   --gradient-accent-text: linear-gradient(120deg, #ede9fe 0%, #c4b5fd 38%, #a78bfa 72%, #9333ea 100%);
-  --gradient-pill-outline: linear-gradient(120deg, #f5e6b8 0%, #edd896 12%, #ede9fe 22%, #c4b5fd 38%, #a78bfa 72%, #9333ea 100%);
+  --gradient-pill-outline: linear-gradient(
+    132deg,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(253, 224, 71, 0.12) 12%,
+    rgba(196, 181, 253, 0.44) 38%,
+    rgba(167, 139, 250, 0.4) 62%,
+    rgba(139, 92, 246, 0.36) 100%
+  );
   --gradient-nda-outline: linear-gradient(
     132deg,
     rgba(255, 255, 255, 0.3) 0%,
@@ -28,8 +35,8 @@
     rgba(167, 139, 250, 0.4) 72%,
     rgba(244, 114, 182, 0.3) 100%
   );
-  --glass-blur: blur(24px) saturate(185%);
-  --glass-primary-bg: rgba(255, 255, 255, 0.09);
+  --glass-blur: blur(28px) saturate(195%);
+  --glass-primary-bg: rgba(255, 255, 255, 0.05);
   --gradient-outline: linear-gradient(
     125deg,
     rgba(255, 255, 255, 0.42) 0%,
@@ -171,13 +178,13 @@ a {
   background-clip: padding-box, border-box;
   -webkit-background-clip: padding-box, border-box;
   box-shadow:
-    inset 0 2px 1px -1px rgba(253, 224, 71, 0.2),
-    inset 2px 0 1px -1px rgba(255, 255, 255, 0.3),
-    inset 0 -1px 1px -1px rgba(255, 255, 255, 0.12),
-    inset -1px 0 1px -1px rgba(255, 255, 255, 0.08),
-    0 0 16px rgba(251, 191, 36, 0.1),
-    0 8px 32px rgba(88, 28, 135, 0.2),
-    0 4px 18px rgba(236, 72, 153, 0.05);
+    inset 0 2px 1px -1px rgba(255, 255, 255, 0.52),
+    inset 2px 0 1px -1px rgba(255, 255, 255, 0.34),
+    inset 0 -1px 1px -1px rgba(255, 255, 255, 0.1),
+    inset -1px 0 1px -1px rgba(255, 255, 255, 0.06),
+    0 0 14px rgba(251, 191, 36, 0.08),
+    0 8px 32px rgba(88, 28, 135, 0.18),
+    0 4px 18px rgba(139, 92, 246, 0.08);
 }
 
 .button--primary::before {
@@ -188,16 +195,14 @@ a {
   border-radius: inherit;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 52% 42% at 82% 105%, rgba(244, 114, 182, 0.14), transparent 58%),
-    radial-gradient(ellipse 46% 38% at 10% 95%, rgba(56, 189, 248, 0.12), transparent 55%),
-    radial-gradient(ellipse 72% 58% at 18% -8%, rgba(255, 255, 255, 0.4), transparent 58%),
+    radial-gradient(ellipse 52% 42% at 82% 105%, rgba(167, 139, 250, 0.12), transparent 58%),
+    radial-gradient(ellipse 46% 38% at 10% 95%, rgba(139, 92, 246, 0.1), transparent 55%),
+    radial-gradient(ellipse 72% 58% at 18% -8%, rgba(255, 255, 255, 0.48), transparent 58%),
     linear-gradient(
       148deg,
-      rgba(255, 255, 255, 0.16) 0%,
-      rgba(196, 181, 253, 0.1) 30%,
-      rgba(96, 165, 250, 0.08) 52%,
-      rgba(236, 72, 153, 0.06) 74%,
-      rgba(139, 92, 246, 0.1) 100%
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(196, 181, 253, 0.08) 35%,
+      rgba(139, 92, 246, 0.06) 100%
     );
 }
 
@@ -208,14 +213,13 @@ a {
   z-index: -1;
   border-radius: inherit;
   pointer-events: none;
-  opacity: 0.28;
+  opacity: 0.22;
   mix-blend-mode: soft-light;
   background: linear-gradient(
     112deg,
     transparent 0%,
-    rgba(56, 189, 248, 0.22) 26%,
-    rgba(192, 132, 252, 0.28) 48%,
-    rgba(244, 114, 182, 0.22) 70%,
+    rgba(196, 181, 253, 0.2) 30%,
+    rgba(167, 139, 250, 0.24) 55%,
     transparent 100%
   );
 }
@@ -223,18 +227,18 @@ a {
 .button--primary:hover {
   color: #fff;
   background:
-    linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)) padding-box,
+    linear-gradient(rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.09)) padding-box,
     var(--gradient-outline-primary) border-box;
   background-clip: padding-box, border-box;
   -webkit-background-clip: padding-box, border-box;
   box-shadow:
-    inset 0 2px 1px -1px rgba(253, 224, 71, 0.28),
-    inset 2px 0 1px -1px rgba(255, 255, 255, 0.38),
-    inset 0 -1px 1px -1px rgba(255, 255, 255, 0.14),
-    inset -1px 0 1px -1px rgba(255, 255, 255, 0.1),
-    0 0 22px rgba(251, 191, 36, 0.14),
-    0 10px 40px rgba(109, 40, 217, 0.24),
-    0 4px 16px rgba(236, 72, 153, 0.07);
+    inset 0 2px 1px -1px rgba(255, 255, 255, 0.58),
+    inset 2px 0 1px -1px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 1px -1px rgba(255, 255, 255, 0.12),
+    inset -1px 0 1px -1px rgba(255, 255, 255, 0.08),
+    0 0 18px rgba(251, 191, 36, 0.1),
+    0 10px 40px rgba(109, 40, 217, 0.22),
+    0 4px 16px rgba(139, 92, 246, 0.1);
 }
 
 .button--secondary {
@@ -876,26 +880,26 @@ body.menu-open {
   color: var(--color-muted);
   font-size: 1.2rem;
   max-width: 540px;
-  margin: 0 auto var(--space-md);
+  margin: 0 auto var(--space-lg);
 }
 
-.contact__email {
-  display: inline-block;
-  font-family: 'Clash Display', var(--font-display), sans-serif;
-  font-size: clamp(1.15rem, 4.5vw, 2.5rem);
-  font-weight: 700;
-  background: var(--gradient-accent-text);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+.contact__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
   margin-bottom: var(--space-lg);
-  word-break: break-word;
-  transition: filter 0.2s ease;
 }
 
-.contact__email:hover {
-  filter: brightness(1.12);
+.contact__email-btn {
+  font-size: 1rem;
+}
+
+.contact__email-address {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  user-select: all;
 }
 
 .contact__socials {
