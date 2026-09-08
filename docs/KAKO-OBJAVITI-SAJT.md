@@ -1,21 +1,152 @@
-# Kako objaviti Galanta portfolio sajt — korak po korak
+# Kako objaviti i održavati Galanta portfolio — kompletan vodič
 
 Ovo uputstvo je pisano za **nekoga ko nije programer**. Sve objašnjeno polako, bez pretpostavke da znaš terminologiju.
 
-**Poslednje ažuriranje:** sajt je spreman za objavu (responzivan dizajn, mobilni meni, favicon). Preporučeni put: **Način 2 — GitHub + Netlify**.
+**Namena dokumenta:** Kada nastaviš rad u Cursor-u, **okaci ovaj fajl u chat** — asistent odmah zna gde je projekat, kako je objavljen i kako se ažurira. Ne moraš ponovo da objašnjavaš GitHub/Netlify setup.
+
+**Poslednje ažuriranje:** septembar 2026 — hero tipografija, glass dugmad, gradijent outline-i, logo v2.
+
+| | |
+|---|---|
+| **Live sajt** | **https://galanta-design-studio.netlify.app** |
+| **GitHub repo** | https://github.com/NatasaUIRadovanovic/galanta-website-portfolio |
+| **Netlify dashboard** | https://app.netlify.com — sajt `galanta-design-studio` |
+| **Netlify Deploys** | https://app.netlify.com (otvori sajt → tab **Deploys**) |
+| **GitHub username** | `NatasaUIRadovanovic` (mala/velika slova u URL-u — GitHub ne pravi razliku) |
+| **Projekat na Mac-u** | `/Users/natasa/Projects/Test_sajt` |
+| **Grana** | `main` |
+
+**Link se ne menja** kad ažuriraš sadržaj — isti URL ostaje na LinkedIn-u, Behance-u, vizit karti. Menja se samo sadržaj iza linka.
 
 ---
 
-## Gde si sada? (tvoj sledeći korak)
+## Stanje projekta (šta je trenutno na sajtu)
 
-| Korak | Status | Šta radiš |
-|-------|--------|-----------|
-| 1. Sajt lokalno radi | ✅ Gotovo | Testirala si na `localhost:8000` + telefon |
-| 2. Git na Mac-u | ✅ Gotovo | Projekat već ima Git istoriju |
-| 3. GitHub nalog + repo | ⬜ **Sledeće** | Deo A ispod — 15 min |
-| 4. `git push` | ⬜ Posle koraka 3 | Pošalješ fajlove na GitHub |
-| 5. Netlify + GitHub | ⬜ Posle koraka 4 | Deo B — sajt ide online |
-| 6. Provera na telefonu | ⬜ Na kraju | Otvoriš `tvoj-sajt.netlify.app` |
+### Tehnički setup
+- **Način objave:** GitHub + Netlify (Način 2) — **ne** Netlify Drop
+- **Build command:** prazno | **Publish directory:** `.`
+- **Auto publish:** uključen — deploy sa `main` grane
+- **Javnost:** sajt je **Public** (Make public urađen)
+- **Lokalni preview:** uvek `python3 -m http.server 8000` → http://localhost:8000 (ne `file://`)
+
+### Sadržaj i dizajn na live sajtu (posle sept. 2026 polish-a)
+
+- **Hero**
+  - Eyebrow: **Clash Display**, ljubičasti gradijent tekst (`--gradient-accent-text`)
+  - H1: **Clash Display** (veći od sekcijskih naslova)
+  - Subtitle: svetlija siva (`--color-hero-subtitle`)
+  - **Primary dugme:** liquid glass + suptilan gradijent outline + blagi warm glow (hint žute iz loga)
+  - **Secondary dugme:** samo gradijent outline; hover = blaga providna pozadina
+- **Selected Work / About / Contact naslovi (h2):** **Clash Display**, manji od h1
+- **Work kartice:** klasična siva ivica (bez gradijent outline-a)
+- **Pilule na karticama:** gradijent outline sa blagim warm tonom (`--gradient-pill-outline`)
+- **NDA kartica („More work“):** poseban suptilan gradijent outline (`--gradient-nda-outline`); eyebrow kao hero
+- **Contact email:** isti gradijent kao eyebrow + Clash Display
+- **Logotipi v2:** `logo-nav.png`, `logo-about.png`, `favicon.png`, `icon-app.png` (transparent PNG)
+
+### Sadržaj (tekst)
+- **Hero:** web/mobile product design; fokus na **redesign postojećih proizvoda**
+- **Work:** 3 case study kartice — PawStay, Spona Sales, UXZGB
+- **NDA CTA kartica** ispod Work grid-a (puna širina, email za privatni walkthrough)
+- **About:** tagovi redosled **Skills → AI workflow → Tools**
+  - Skills uključuje: Product Redesign, Cross-functional Collaboration, …
+  - AI workflow uključuje: **Cursor**, GPT & Claude, …
+- **Contact:** email + LinkedIn + Behance; NDA rad preko emaila pa Google Meet
+
+### Kontakt na sajtu
+- Email: `natasa.radovanovic1991@gmail.com`
+- LinkedIn: https://www.linkedin.com/in/natasa-radovanovic-b51b3b107/
+- Behance: https://www.behance.net/natasaradovanovic
+
+---
+
+# ⭐ SVAKODNEVNI RAD — kako ažuriraš već objavljen sajt
+
+**Ovo je najvažniji deo.** Koristiš ga svaki put kad nešto promeniš.
+
+### Šta **NE** objavljuje sajt
+
+| Akcija | Šta radi | Da li ide na live sajt? |
+|--------|----------|-------------------------|
+| **Cmd + S** u Cursor-u | Čuva fajl na Mac-u | ❌ NE |
+| Desni klik → Save | Isto | ❌ NE |
+| Osvežavanje localhost | Vidiš lokalnu verziju | ❌ NE |
+
+**Cmd + S nema obaveštenje** — beli krug pored imena fajla nestane = sačuvano. To je normalno.
+
+### Šta **JESTE** objavljuje
+
+```
+1. Izmena u Cursor-u
+2. Cmd + S
+3. Terminal (tri komande):
+4. Netlify deploy (~1 min)
+5. Cmd + Shift + R na live sajtu
+```
+
+**Copy-paste za svaku izmenu:**
+
+```bash
+cd /Users/natasa/Projects/Test_sajt
+git add .
+git commit -m "Kratak opis šta si promenila, npr. NDA CTA širina"
+git push
+```
+
+Ako menjaš **samo jedan fajl**, može preciznije:
+
+```bash
+cd /Users/natasa/Projects/Test_sajt
+git add index.html assets/css/styles.css
+git commit -m "Opis izmene"
+git push
+```
+
+### Posle `git push`
+
+1. **Netlify** → sajt `galanta-design-studio` → tab **Deploys**
+2. Sačekaj status **Published** (obično 30 sek – 2 min)
+3. Otvori https://galanta-design-studio.netlify.app
+4. **Cmd + Shift + R** (hard refresh — inače vidiš staro)
+
+### Ako push prošao ali sajt star
+
+GitHub ima izmene, Netlify nije deploy-ovao — **ručno pokreni:**
+
+1. Netlify → **Deploys**
+2. **Trigger deploy** → **Deploy project**
+   *(Ranije se zvalo „Deploy site“ — isto dugme, drugačiji naziv)*
+3. Ako i dalje staro: **Deploy project without cache**
+
+### Kako znaš da je uspelo
+
+| Gde | Šta vidiš |
+|-----|-----------|
+| **Terminal** | `main -> main` bez greške |
+| **Netlify Deploys** | Novi red **Published** + tvoja commit poruka |
+| **Live sajt** | Nova izmena posle Cmd + Shift + R |
+
+### `git push` traži lozinku
+
+- **Username:** `natasauiradovanovic` ili `NatasaUIRadovanovic`
+- **Password:** GitHub **token** (`ghp_...`) — **NE** GitHub lozinka
+- Token: GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic) → štikliraj `repo`
+
+---
+
+## Gde si sada? (setup — završeno ✅)
+
+| Korak | Status |
+|-------|--------|
+| 1. Sajt lokalno radi | ✅ |
+| 2. Git na Mac-u | ✅ |
+| 3. GitHub repo `galanta-website-portfolio` | ✅ |
+| 4. `git push` | ✅ |
+| 5. Netlify + GitHub | ✅ |
+| 6. Sajt javan (Make public) | ✅ |
+| 7. Ime: `galanta-design-studio.netlify.app` | ✅ |
+
+**Svaki sledeći rad:** sekcija [⭐ SVAKODNEVNI RAD](#-svakodnevni-rad--kako-ažuriraš-već-objavljen-sajt) iznad.
 
 ---
 
@@ -143,10 +274,12 @@ Ovde koristiš dve stvari:
 1. Ulogovana si na GitHub
 2. Desno gore **+** → **New repository**
 3. Popuni:
-   - **Repository name:** `galanta-portfolio` (ili kako hoćeš)
+   - **Repository name:** npr. `galanta-website-portfolio` (ime može biti bilo koje — **zapamti tačno koje si unela**)
    - **Public** ili **Private** — oba rade; Private ako ne želiš da kod bude javan
    - **NE štikliraj** „Add a README“ (već imaš fajlove)
 4. Klikni **Create repository**
+
+⚠️ **Ime repoa mora da se poklapa** sa onim u Terminal komandi. Ako si napravila `galanta-website-portfolio`, u Terminalu mora biti isto to ime — ne `galanta-portfolio` iz primera ispod.
 
 GitHub će ti pokazati stranicu sa uputstvima. **Ostavi tu stranicu otvorenu.**
 
@@ -160,13 +293,22 @@ git add .
 git commit -m "Spremno za objavu — responzivni sajt i mobilni meni"
 ```
 
-Zatim poveži GitHub (samo **prvi put** — zameni `TVOJ_GITHUB_USERNAME`):
+Zatim poveži GitHub (samo **prvi put** — zameni username i **tačno ime repoa**):
 
 ```bash
-git remote add origin https://github.com/TVOJ_GITHUB_USERNAME/galanta-portfolio.git
+git remote add origin https://github.com/TVOJ_GITHUB_USERNAME/IME-TVOG-REPOA.git
 git branch -M main
 git push -u origin main
 ```
+
+**Tvoj slučaj** (već podešeno — koristi samo ako ponovo push-uješ):
+
+```bash
+cd /Users/natasa/Projects/Test_sajt
+git push -u origin main
+```
+
+Repo: `https://github.com/NatasaUIRadovanovic/galanta-website-portfolio`
 
 Ako GitHub kaže da `remote origin already exists`, preskoči `git remote add` i samo uradi `git push -u origin main`.
 
@@ -184,6 +326,27 @@ Ako traži token (detaljnije, 2024+):
 
 Kada `git push` uspe — osveži GitHub stranicu repozitorijuma. Trebalo bi da vidiš sve fajlove (`index.html`, `assets/`, `docs/`, itd.).
 
+### ✅ Provera — šta tačno vidiš na GitHub-u?
+
+Kada otvoriš repo u browseru, **ne vidiš lep sajt** — vidiš **listu fajlova** (kao Finder). To je normalno. GitHub je skladište koda, ne portfolio u browseru.
+
+U listi fajlova treba da vidiš nešto ovako:
+
+```
+assets/          ← folder (plava ikonica fascikle)
+cases/           ← folder
+docs/            ← folder
+partials/        ← folder
+index.html       ← FAJL (bela ikonica) — ovo JE početna strana
+README.md
+netlify.toml
+...
+```
+
+**Važno:** `index.html` **nije folder** — zove se **`index.html`** (sa `.html` na kraju). Može biti ispod `docs/` u listi jer GitHub sortira abecedno. Klikni na njega — videćeš HTML kod početne strane. To znači da je sve u redu.
+
+Portfolio **vizuelno** vidiš tek kad povežeš **Netlify** (Deo B) — tada dobijaš pravi link tipa `https://neko-ime.netlify.app`.
+
 ---
 
 ## DEO B — Netlify povezan sa GitHub-om
@@ -193,7 +356,9 @@ Kada `git push` uspe — osveži GitHub stranicu repozitorijuma. Trebalo bi da v
 1. **https://app.netlify.com** → uloguj se
 2. **Add new site** → **Import an existing project**
 3. Izaberi **GitHub** → dozvoli Netlify-u pristup
-4. Nađi repozitorijum **galanta-portfolio** → klikni
+4. Nađi repozitorijum **`galanta-website-portfolio`** → klikni
+
+   *(Ne traži `galanta-portfolio` — tvoj repo se zove `galanta-website-portfolio`.)*
 
 ### Korak 2 — Podešavanja build-a
 
@@ -207,41 +372,265 @@ Netlify pita za build settings. Za tvoj sajt:
 
 Klikni **Deploy site**.
 
-Sačekaj 1–2 minuta. Status će postati **Published** — klikni link, sajt je live.
+Deploy obično traje **10 sekundi do 5 minuta**. Faze: Building → Deploying → Post processing → **Published**.
 
-### Korak 3 — Lepše ime (opciono)
+⚠️ **F5 u Netlify dashboard-u** ponekad ne osvežava status — ako piše „Post processing“ dugo, otvori link ručno u browseru ili sačekaj da piše **Published**.
 
-Isto kao u Načinu 1: **Domain management → Edit site name**.
+### Korak 3 — Učini sajt javnim (obavezno!)
+
+Od 2026. Netlify **novi sajtovi kreću kao privatni**. Deploy može biti uspešan, ali link ne rade drugi ljudi dok ne objaviš.
+
+1. Na dashboard-u klikni **Make public** (banner ili u podešavanjima)
+2. Ili: **Site configuration → General → Visitor access / Project visibility → Production deploys → Public**
+
+**Provera:** otvori link u **Incognito** prozoru (Cmd + Shift + N) — mora da se vidi portfolio, ne „Sign in to Netlify“.
+
+### Korak 4 — Lepše ime
+
+**Site configuration → Domain management → Edit site name**
+
+Tvoj sajt: **`galanta-design-studio`** → https://galanta-design-studio.netlify.app
+
+### Korak 5 — Provera live sajta
+
+Otvori **https://galanta-design-studio.netlify.app** i proveri:
+
+- [x] Početna — hero, Work, About, Contact
+- [x] PawStay, Spona, UXZGB — case study stranice
+- [ ] Email u Contact sekciji tačan
+- [ ] LinkedIn / Behance linkovi rade
+- [x] Mobilni meni na telefonu
+- [x] Favicon (G ikonica u tabu)
+
+**Ne koristi** dugački preview link (`6a7dcbbb...--ime.netlify.app`) za deljenje — koristi glavni: **galanta-design-studio.netlify.app**
 
 ---
 
 ## Kako ažuriraš sajt posle objave (GitHub + Netlify)
 
-Svaki put kada nešto promeniš u projektu:
+→ **Detaljno:** vidi sekciju [⭐ SVAKODNEVNI RAD](#-svakodnevni-rad--kako-ažuriraš-već-objavljen-sajt) na vrhu dokumenta.
 
-### 1. Izmeni fajlove
+Ukratko:
 
-- Cursor ili Finder
-- Slike: uvek u `assets/images/` preko Findera (ne preko chat-a — kompresuje)
+1. Izmeni fajlove u Cursor-u / Finder-u → **Cmd + S**
+2. Terminal: `git add .` → `git commit -m "opis"` → `git push`
+3. Netlify → **Deploys** → **Published**
+4. https://galanta-design-studio.netlify.app + **Cmd + Shift + R**
 
-### 2. Sačuvaj verziju u Git
+Slike: uvek u `assets/images/` preko **Findera** (chat kompresuje).
+
+---
+
+# Kako menjati tekst i sekcije na početnoj
+
+Glavni fajl: **`index.html`** (Cmd + P → ukucaj `index.html`)
+
+| Šta menjaš | Gde u `index.html` | Traži (Cmd + F) |
+|------------|-------------------|-----------------|
+| Hero naslov | `.hero__title` | `hero__title` |
+| Hero podnaslov | `.hero__subtitle` | `hero__subtitle` |
+| Work uvod | `.section-lead` u `#work` | `Selected Work` |
+| NDA kartica (tekst + dugme) | `.nda-cta` | `nda-cta` |
+| About pasusi | `.about__text` | `about__text` |
+| About tagovi (Skills / AI / Tools) | `.about__tag-groups` | `about__tag-label` |
+| Contact | `#contact` | `contact__text` |
+
+### NDA CTA kartica
+- HTML: `index.html` → blok `nda-cta`
+- Stilovi: `assets/css/styles.css` → traži `.nda-cta`
+- Posle CSS izmene: u `index.html` povećaj broj u `styles.css?v=29` → `?v=30` (browser keš)
+
+### Fontovi (učitavaju se u `index.html`)
+- **Clash Display** — hero eyebrow, h1, h2 naslovi sekcija, NDA eyebrow, contact email
+- **Inter** — body tekst
+- **Space Grotesk** — rezervni display font u CSS-u
+
+### Dizajn tokeni (CSS)
+Glavni fajl: `assets/css/styles.css` → sekcija `:root` na vrhu:
+- `--gradient-accent-text` — eyebrow / email gradijent
+- `--gradient-pill-outline` — pilule na work karticama
+- `--gradient-nda-outline` — ivica NDA kartice
+- `--gradient-outline` / `--gradient-outline-primary` — secondary / primary dugme ivice
+
+### About tagovi — redosled
+U `index.html`, redosled blokova unutar `.about__tag-groups`:
+1. Skills  
+2. AI workflow  
+3. Tools  
+
+Novi tag = novi `<li>...</li>` unutar odgovarajuće `<ul>`.
+
+### Work kartice (3 projekta)
+Fajl: **`partials/work-grid.html`** — učitava se automatski na početnu.
+
+---
+
+# Kako dodati novi projekat u portfolio
+
+Trenutno imaš **3 projekta** na početnoj (PawStay, Spona, UXZGB). Svaki novi projekat = **nova case study stranica** + **nova kartica** u Work sekciji.
+
+## Šta treba da pripremiš pre nego što kreneš
+
+- [ ] Ime projekta (npr. „Finance App“)
+- [ ] Kratak opis (1 rečenica za karticu)
+- [ ] Tag (npr. „Web · SaaS · Live“ ili „Concept · Mobile“)
+- [ ] Slike — hero, ekrani, proces (PNG/JPG, puna rezolucija)
+- [ ] Tekst case study-ja: problem → proces → rešenje → rezultat
+- [ ] Da li je NDA? (ako da, ne stavljaj osetljive ekrane — piši generički)
+
+---
+
+## Korak 1 — Folder za slike
+
+1. Finder → **Cmd + Shift + G** → `/Users/natasa/Projects/Test_sajt/assets/images/`
+2. Napravi novi folder, npr. `finance-app` (mala slova, crtica umesto razmaka)
+3. Prevuci slike u taj folder
+
+**Obavezno:** slike dodaj preko **Findera**, ne preko chat-a u Cursor-u (chat ih smanji i izgledaju mutno).
+
+Preporučene slike:
+
+| Fajl | Namena |
+|------|--------|
+| `card.png` | Slika na kartici na početnoj (≈640×480) |
+| `hero.png` | Velika slika na vrhu case study stranice |
+| ostale | Ekrani, wireframe-i, before/after… |
+
+---
+
+## Korak 2 — Nova case study stranica
+
+1. U Cursor-u otvori folder `cases/`
+2. **Dupliraj** postojeći fajl koji ti je najbliži — npr. kopiraj `pawstay.html` ili `spona-sales.html`
+3. Preimenuj kopiju u npr. `finance-app.html` (mala slova, crtica)
+
+4. U novom fajlu promeni:
+
+| Šta | Primer |
+|-----|--------|
+| `<title>` u `<head>` | `Finance App — Galanta Design Studio` |
+| `case-hero__tag` | `Web · Fintech` |
+| `case-hero__title` | Naslov projekta |
+| `case-hero__summary` | 2–3 rečenice |
+| `case-meta` | Role, Timeline, Platform, Outcome |
+| Putanje slika | `../assets/images/finance-app/hero.png` |
+
+5. Sekcije koje već postoje u fajlu — popuni tekstom:
+   - The problem
+   - My role & process
+   - The solution
+   - Outcome / results
+
+**Savet:** ne moraš sve sekcije odjednom. Možeš prvo objaviti sa hero slikom i kratkim tekstom, pa dopunjavati kasnije.
+
+---
+
+## Korak 3 — Kartica na početnoj (Work sekcija)
+
+Otvori fajl **`partials/work-grid.html`**.
+
+Na **kraj** fajla (posle poslednje `</article>`) dodaj novu karticu — kopiraj postojeću i promeni:
+
+```html
+<article class="case-card">
+  <a href="cases/finance-app.html" class="case-card__link">
+    <div class="case-card__media" aria-label="Finance App preview">
+      <img src="assets/images/finance-app/card.png" alt="" class="case-card__image" width="640" height="480" loading="lazy">
+    </div>
+    <div class="case-card__body">
+      <h3>Finance App</h3>
+      <p>Kratak opis koji se vidi na kartici — jedna rečenica.</p>
+      <span class="case-card__tag">Web · Fintech · Concept</span>
+    </div>
+  </a>
+</article>
+```
+
+**Važno:**
+- `href="cases/..."` mora da odgovara imenu HTML fajla iz koraka 2
+- `src="assets/images/..."` mora da odgovara folderu slika iz koraka 1
+
+---
+
+## Korak 4 — Provera lokalno (pre objave)
+
+Terminal:
+
+```bash
+cd /Users/natasa/Projects/Test_sajt
+python3 -m http.server 8000
+```
+
+U browseru: **http://localhost:8000**
+
+Proveri:
+- [ ] Nova kartica se vidi u Work sekciji
+- [ ] Klik na karticu otvara case study
+- [ ] Slike se učitavaju (nema praznih mesta)
+- [ ] Mobilni meni radi
+- [ ] „Back“ / logo vodi na početnu
+
+Zaustavi server: **Ctrl + C**
+
+---
+
+## Korak 5 — Objavi na live sajt
 
 Terminal:
 
 ```bash
 cd /Users/natasa/Projects/Test_sajt
 git add .
-git commit -m "Opis izmene na srpskom ili engleskom, npr. Novi Spona hero"
+git commit -m "Dodat projekat: Finance App"
 git push
 ```
 
-### 3. Sačekaj Netlify
+1. Sačekaj ~1 min
+2. Netlify → **Deploys** → status **Published**
+3. Otvori **https://galanta-design-studio.netlify.app**
+4. Ako vidiš staro: **Cmd + Shift + R** (hard refresh)
 
-1. Idi na Netlify dashboard → tvoj sajt → **Deploys**
-2. Za ~1 min videćeš novi deploy **Published**
-3. Otvori sajt — ako vidiš staro, **Cmd + Shift + R** (hard refresh)
+**To je sve.** Svaki sledeći projekat = isti proces (slike → HTML stranica → kartica → test → push).
 
-**To je ceo proces ažuriranja.** Tri komande u Terminalu.
+---
+
+## Brzi pregled — koji fajl za šta
+
+| Želim da… | Fajl |
+|-----------|------|
+| Dodam novi projekat na početnu | `partials/work-grid.html` |
+| Napišem case study stranicu | `cases/ime-projekta.html` (kopiraj `pawstay.html`) |
+| Dodam slike | `assets/images/ime-projekta/` |
+| Promenim tekst About / Contact | `index.html` |
+| Promenim boje / dugmad | `assets/css/styles.css` |
+
+Detaljnije (engleski): [`HOW-TO-UPDATE.md`](HOW-TO-UPDATE.md)
+
+---
+
+## NDA projekti — šta možeš da pokažeš
+
+Ako klijentski rad ne sme javno:
+
+- Opis procesa bez imena proizvoda
+- Wireframe-i i generički UI (bez logoa klijenta)
+- Metrike tipa „+20% konverzija“ bez screenshot-a
+- Link ka Behance-u ako imaš blur / ograničenu verziju
+
+PawStay je dobar primer: jasan proces, bez NDA sadržaja.
+
+### NDA CTA na sajtu (već urađeno)
+- Kartica ispod Work sekcije — email prvo, pa Google Meet u dogovoru
+- **Ne stavljaj** javni Google Meet link na sajt (NDA + kontrola termina)
+- Kasnije opciono: Calendly kao drugo dugme pored emaila
+
+---
+
+## Redosled projekata na početnoj
+
+Projekti u `work-grid.html` idu **odozgo nadole** — prvi u fajlu = prva kartica levo/gore.
+
+Da staviš novi projekat **na prvo mesto**, premesti ceo `<article>...</article>` blok na vrh fajla.
 
 ---
 
@@ -254,7 +643,20 @@ Ako kupiš domen npr. `galantadesign.com`:
 3. Netlify ti kaže koje DNS zapise da dodaš kod registrara domena
 4. Sačekaj 5 min – 48h da se propagira
 
-Ne moraš odmah — `tvoj-ime.netlify.app` je potpuno validan portfolio link.
+Ne moraš odmah — **galanta-design-studio.netlify.app** je potpuno validan portfolio link.
+
+---
+
+# Hosting — Netlify vs Vercel (kratko)
+
+| | **Netlify** (tvoj izbor) | **Vercel** |
+|---|--------------------------|------------|
+| Cena za portfolio | **$0** | **$0** (Hobby) |
+| GitHub auto deploy | ✅ | ✅ |
+| Komercijalni sajt na free planu | ✅ dozvoljeno | ❌ samo lični projekti |
+| Tvoj projekat | `netlify.toml` spreman | `vercel.json` postoji ali ne koristiš |
+
+Oba su pouzdana. Ostani na Netlify — setup je gotov.
 
 ---
 
@@ -271,7 +673,9 @@ Ne moraš odmah — `tvoj-ime.netlify.app` je potpuno validan portfolio link.
 | **Repository (repo)** | Folder projekta na GitHub-u |
 | **Branch `main`** | Glavna verzija sajta |
 | **Netlify Drop** | Prevuci folder → sajt online |
-| **Build** | Kod tebe nema build-a — nema kompajliranja, samo fajlovi |
+| **Trigger deploy** | Ručno pokretanje novog deploy-a na Netlify (Deploy project) |
+| **Hard refresh** | Cmd + Shift + R — browser učitava sveže sa servera |
+| **Token** | GitHub ključ umesto lozinke u Terminalu (`ghp_...`) |
 
 ---
 
@@ -293,8 +697,22 @@ Ne moraš odmah — `tvoj-ime.netlify.app` je potpuno validan portfolio link.
 **Sajt pokazuje staru verziju**  
 → Cmd + Shift + R u browseru. Proveri na Netlify da je deploy zelen.
 
-**`git push` ne radi**  
-→ Proveri GitHub login / token. Proveri da si u pravom folderu (`cd /Users/natasa/Projects/Test_sajt`).
+**`git push` ne radi — „Repository not found“**  
+→ Najčešće: **ime repoa na GitHub-u ne odgovara** imenu u Terminalu. Proveri tačan naziv na GitHub-u (npr. `galanta-website-portfolio`), pa ispravi link:
+
+```bash
+git remote set-url origin https://github.com/NatasaUIRadovanovic/galanta-website-portfolio.git
+git push -u origin main
+```
+
+**`git push` ne radi — „Invalid username or token“**  
+→ Umesto GitHub lozinke mora **Personal Access Token** (`ghp_...`). Token se vidi samo jednom — ako izgubiš, napravi novi (Settings → Developer settings → Tokens classic → štikliraj `repo`).
+
+**`remote origin already exists` + URL sa `TVOJE_IME`**  
+→ Ranije je ostao pogrešan placeholder. Ispravi sa `git remote set-url origin ...` (gore), pa push ponovo.
+
+**Ne vidim `index` na GitHub-u**  
+→ Traži **`index.html`** (fajl, ne folder). Sortirano je abecedno — obično ispod `docs/`.
 
 **Link ne otvara case study**  
 → Uvek testiraj lokalno pre publish-a (`python3 -m http.server 8000`).
@@ -308,36 +726,69 @@ Ne moraš odmah — `tvoj-ime.netlify.app` je potpuno validan portfolio link.
 **Deploy na Netlify pukne**  
 → Proveri: Build command = prazno, Publish directory = `.` (tačka)
 
+**Sajt radi meni, ali link ne rade drugi**  
+→ Sajt je još **privatan**. Netlify → **Make public** → proveri u Incognito prozoru.
+
+**Deploy uspeo, ali piše „Post processing“ dugo**  
+→ Normalno do 5–10 min na prvom deploy-u. Osveži stranicu ili otvori link ručno u browseru.
+
+**Push prošao, GitHub ima izmene, live sajt star**  
+→ Netlify → **Trigger deploy** → **Deploy project**. Proveri da Deploys pokazuje najnoviji commit.
+
+**Mislila sam da Cmd + S objavljuje**  
+→ Cmd + S samo lokalno. Obavezno: `git add` → `git commit` → `git push` → sačekaj Netlify.
+
+**F5 u Netlify dashboard-u ne osvežava deploy status**  
+→ Normalno. Otvori Deploys tab ponovo ili sačekaj da piše Published.
+
 ---
 
-## Checklist pre prvog publish-a
+## Checklist — objava (završeno ✅)
 
 - [ ] Email tačan u Contact sekciji
 - [ ] LinkedIn i Behance linkovi rade
 - [x] Sve slike se učitavaju (Spona hero, PawStay, UXZGB)
 - [x] Provereno na telefonu (sendvič meni, scroll, fontovi)
-- [ ] `git push` uspeo na GitHub
-- [ ] Netlify deploy status: **Published**
+- [x] `git push` uspeo na GitHub
+- [x] Netlify deploy: **Published**
+- [x] Sajt javan: **https://galanta-design-studio.netlify.app**
 
 ---
 
-## Pomoć — gde šta u projektu
+## Pomoć — mapa fajlova u projektu
 
 | Šta | Fajl |
 |-----|------|
-| Početna strana | `index.html` |
+| Početna strana (hero, about, contact, NDA CTA) | `index.html` |
+| Work kartice (3 projekta) | `partials/work-grid.html` |
 | Case study stranice | `cases/pawstay.html`, `cases/spona-sales.html`, `cases/uxzgb.html` |
-| Slike | `assets/images/` |
-| Favicon (tab) | `assets/images/galanta/favicon.png` |
-| G app ikonica | `assets/images/galanta/icon-app.png` |
-| Nav wordmark | `assets/images/galanta/logo-nav.png` |
-| Boje, dugmad, mobilni meni | `assets/css/styles.css` |
-| Kako menjati sadržaj | [`HOW-TO-UPDATE.md`](HOW-TO-UPDATE.md) (engleski) |
+| Novi case study | kopiraj `cases/pawstay.html` → `cases/ime.html` |
+| Slike | `assets/images/` (podfolder po projektu) |
+| Boje, dugmad, mobilni meni, NDA kartica stil | `assets/css/styles.css` |
+| Case study stilovi | `assets/css/case.css` |
+| Galaxy efekti, meni JS | `assets/js/main.js`, `assets/css/effects.css` |
+| Favicon | `assets/images/galanta/favicon.png` |
+| Nav logo | `assets/images/galanta/logo-nav.png` |
+| **Ovaj vodič (srpski)** | `docs/KAKO-OBJAVITI-SAJT.md` |
+| Vodič za izmene (engleski) | `docs/HOW-TO-UPDATE.md` |
+| Netlify config | `netlify.toml` |
 
-Detaljnije kako da **menjaš sadržaj** posle objave: [`HOW-TO-UPDATE.md`](HOW-TO-UPDATE.md).
-
-Projekat ima **Git** — posle svake izmene: `git add .` → `git commit -m "opis"` → `git push`.
+### Tehničke napomene (za nastavak rada)
+- Navigacija je **ugrađena u HTML** (`index.html` + case stranice) — ne učitava se iz `partials/header.html` na live stranicama
+- `partials/work-grid.html` i `partials/footer.html` se učitavaju preko JS (`main.js`)
+- Uvek testiraj na **localhost:8000**, ne dvostrukim klikom na HTML
+- Posle CSS/JS izmene: povećaj `?v=` broj u `index.html` da browser učita novo
 
 ---
 
-*Srećno sa objavom — Galanta Design Studio 🟣*
+## Za nastavak rada u Cursor-u
+
+Kada otvoriš novi chat, nalepi:
+
+> Radim na Galanta portfolio. Projekat: `/Users/natasa/Projects/Test_sajt`. Live: https://galanta-design-studio.netlify.app. GitHub + Netlify. Vodič: `docs/KAKO-OBJAVITI-SAJT.md`.
+
+Ili samo **okaci ovaj fajl** — sadrži sve potrebno.
+
+---
+
+*Portfolio live: **https://galanta-design-studio.netlify.app** — Galanta Design Studio 🟣*

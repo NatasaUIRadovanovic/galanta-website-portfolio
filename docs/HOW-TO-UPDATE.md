@@ -1,5 +1,9 @@
 # Galanta Portfolio — How to Update
 
+**Live site:** https://galanta-design-studio.netlify.app  
+**Repo:** https://github.com/NatasaUIRadovanovic/galanta-website-portfolio  
+**Last design pass:** September 2026 (Clash Display typography, glass buttons, gradient outlines)
+
 This site is a **static website** (HTML + CSS + JavaScript). No app server, no WordPress, no build step.
 
 **Format of this guide:** Markdown (`.md`) — a plain text file that opens in Cursor, TextEdit, GitHub, and any browser. You do **not** need Word (.docx) for the project itself. If you want a printable copy later, open this file in Cursor and export or copy into Google Docs / Word once.
@@ -56,7 +60,8 @@ Hard refresh if something looks old: **Cmd + Shift + R**
 | Spona case study | `cases/spona-sales.html` |
 | UXZGB case study | `cases/uxzgb.html` |
 | New case study | Copy `cases/case-template.html` → `cases/my-project.html`, then add a card in `partials/work-grid.html` |
-| Site colors & fonts | `assets/css/styles.css` (top section `:root { ... }`) |
+| Site colors, fonts & buttons | `assets/css/styles.css` (top section `:root { ... }` + `.button--primary`, `.button--secondary`, `.case-card__tag`, `.nda-cta`) |
+| Hero typography | `index.html` + `.hero__*` in `styles.css` |
 | Galaxy mouse effects | `assets/css/effects.css` and `assets/js/main.js` |
 | Case study layout tweaks | `assets/css/case.css` |
 
@@ -92,13 +97,15 @@ Use **PNG with transparent background**.
 Browsers cache old files. Bump the version number in `index.html`:
 
 ```html
+<link rel="stylesheet" href="assets/css/styles.css?v=29">
 <link rel="stylesheet" href="assets/css/effects.css?v=41">
 <script src="assets/js/main.js?v=41" defer></script>
 ```
 
-Change `41` → `42` each time you update those files.
+Change `29` → `30` (or higher) each time you update `styles.css`.  
+Case pages use `../assets/css/styles.css?v=5` — bump those too if case pages should pick up global CSS changes immediately.
 
-Case pages: bump `case.css?v=6` in each case HTML file if you changed case styles.
+Case pages: bump `case.css?v=6` in each case HTML file if you changed case-only styles.
 
 ---
 
@@ -131,15 +138,27 @@ git checkout -- path/to/file.html
 
 ## Publish / update the live site
 
-### If you use GitHub + Netlify (recommended)
+**Live URL (unchanged after updates):** https://galanta-design-studio.netlify.app
 
-After `git commit`:
+### GitHub + Netlify (your setup)
+
+1. Save files in Cursor (**Cmd + S**)
+2. In Terminal:
 
 ```bash
+cd /Users/natasa/Projects/Test_sajt
+git add index.html assets/css/styles.css assets/images/galanta/ partials/ cases/ docs/
+git commit -m "Hero polish, glass buttons, typography, logo v2"
 git push
 ```
 
-Netlify rebuilds the site automatically (about 1 minute).
+3. Open https://app.netlify.com → site **galanta-design-studio** → **Deploys**
+4. Wait for status **Published** (~1 min)
+5. Open the live URL and hard refresh: **Cmd + Shift + R**
+
+If deploy does not start after push: **Trigger deploy** → **Deploy project** (or **Deploy project without cache**).
+
+**Git push login:** GitHub username + Personal Access Token (`ghp_...`), not your GitHub password.
 
 ### If you use Netlify Drop (drag & drop)
 
