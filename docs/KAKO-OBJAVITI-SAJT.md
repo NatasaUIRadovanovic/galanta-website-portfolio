@@ -111,12 +111,20 @@ git push
 
 ### Ako push prošao ali sajt star
 
-GitHub ima izmene, Netlify nije deploy-ovao — **ručno pokreni:**
+**Prvo proveri da li je GitHub noviji od live sajta:**
+1. GitHub → repo → `index.html` → traži npr. `Send an email` ili `styles.css?v=31`
+2. Live sajt → View Page Source (desni klik) → traži isto
+3. Ako GitHub ima novo, a live ne → Netlify nije objavio poslednji deploy
+
+**Rešenje — ručno pokreni deploy:**
 
 1. Netlify → **Deploys**
-2. **Trigger deploy** → **Deploy project**
-   *(Ranije se zvalo „Deploy site“ — isto dugme, drugačiji naziv)*
-3. Ako i dalje staro: **Deploy project without cache**
+2. Proveri da je **najnoviji** red (tvoja commit poruka) status **Published** — ne samo „Ready“
+3. Ako nije Published: klikni na taj deploy → **Publish deploy** (ako postoji)
+4. Ili: **Trigger deploy** → **Deploy project**
+5. Ako i dalje staro: **Deploy project without cache**
+
+**Brza provera posle deploy-a:** u source kodu live sajta mora biti `styles.css?v=31` i dugme `Send an email`.
 
 ### Kako znaš da je uspelo
 
@@ -438,7 +446,7 @@ Glavni fajl: **`index.html`** (Cmd + P → ukucaj `index.html`)
 ### NDA CTA kartica
 - HTML: `index.html` → blok `nda-cta`
 - Stilovi: `assets/css/styles.css` → traži `.nda-cta`
-- Posle CSS izmene: u `index.html` povećaj broj u `styles.css?v=30` → `?v=31` (browser keš)
+- Posle CSS izmene: u `index.html` povećaj broj u `styles.css?v=31` → `?v=32` (browser keš)
 
 ### Fontovi (učitavaju se u `index.html`)
 - **Clash Display** — hero eyebrow, h1, h2 naslovi sekcija, NDA eyebrow
